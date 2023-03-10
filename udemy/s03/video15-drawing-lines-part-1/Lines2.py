@@ -1,4 +1,4 @@
-# after 1:38 min in video using GL_LINES
+# after 3:01 min in video using GL_LINE_LOOP
 import pygame
 from pygame.locals import *
 from OpenGL.GL import *
@@ -29,7 +29,7 @@ def plot_point():
     glEnd()
 
 def plot_lines():
-    glBegin(GL_LINES)
+    glBegin(GL_LINE_LOOP)
     for p in points:
         glVertex2f(p[0], p[1])
     glEnd()

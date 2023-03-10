@@ -1,4 +1,4 @@
-# after 1:38 min in video using GL_LINES
+# after 4:37 min in video using event.type == MOUSEMOTION
 import pygame
 from pygame.locals import *
 from OpenGL.GL import *
@@ -29,7 +29,7 @@ def plot_point():
     glEnd()
 
 def plot_lines():
-    glBegin(GL_LINES)
+    glBegin(GL_LINE_STRIP)
     for p in points:
         glVertex2f(p[0], p[1])
     glEnd()
@@ -45,7 +45,7 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-        elif event.type == MOUSEBUTTONDOWN:
+        elif event.type == MOUSEMOTION:
             p = pygame.mouse.get_pos()
             points.append((map_value(0, screen_width, 0, ortho_width, p[0]),
                            map_value(0, screen_height, ortho_height, 0, p[1])))
