@@ -1,3 +1,4 @@
+# challenge after 1:24 min in video 17
 import math
 
 import numpy as np
@@ -29,7 +30,7 @@ def plot_graph():
     py: GL_DOUBLE
     for px in np.arange(0, 4, 0.005):
         py = math.exp(-px) * math.cos(2 * math.pi * px)
-        glVertex2f(px, py)
+        glVertex2f(map_value(0, 4, -1, 1, px), map_value(py)
     glEnd()
 
 def plot_point():
@@ -73,7 +74,7 @@ while not done:
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
-    plot_lines()
+    plot_graph()
     pygame.display.flip()
     # pygame.time.wait(100)
 pygame.quit()
