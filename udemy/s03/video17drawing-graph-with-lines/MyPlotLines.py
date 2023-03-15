@@ -23,6 +23,7 @@ def init_ortho():
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
     gluOrtho2D(0, ortho_width, 0, ortho_height)
+    #gluOrtho2D(0, 4, -1, 1)
 
 def plot_graph():
     glBegin(GL_POINTS)
@@ -30,8 +31,10 @@ def plot_graph():
     py: GL_DOUBLE
     for px in np.arange(0, 4, 0.005):
         py = math.exp(-px) * math.cos(2 * math.pi * px)
-        glVertex2f(map_value(0, 4, -1, 1, px), map_value(py)
+        glVertex2f(map_value(0, 4, 0, ortho_width, px), map_value(-1, 1, 0, ortho_height, py))
+        #glVertex2f(px, py)
     glEnd()
+
 
 def plot_point():
     glBegin(GL_POINTS)
@@ -47,6 +50,21 @@ def plot_lines():
             glVertex2f(coords[0], coords[1])
         glEnd()
 
+def plot_lines_tst():
+    poly = [
+        (4, 7),
+        (40, 470),
+        (320, 240),
+        (630, 460),
+        (635, 5),
+        (7, 8),
+    ]
+    glBegin(GL_LINES)
+    for point in poly:
+        glVertex2i(point[0], point[1])
+    glEnd()
+
+
 done = False
 init_ortho()
 glPointSize(5)
@@ -59,22 +77,11 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
-        elif event.type == MOUSEBUTTONDOWN:
-            mouse_down = True
-            line = []
-            points.append(line)
-        elif event.type == MOUSEBUTTONUP:
-            mouse_down = False
-        elif event.type == MOUSEMOTION and mouse_down:
-            p = pygame.mouse.get_pos()
-            line.append((map_value(0, screen_width, 0, ortho_width, p[0]),
-                           map_value(0, screen_height, ortho_height, 0, p[1])))
-
-
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
-    plot_graph()
+    #plot_graph()
+    plot_lines_tst()
     pygame.display.flip()
     # pygame.time.wait(100)
 pygame.quit()
