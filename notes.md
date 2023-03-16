@@ -2,4 +2,5 @@
 från boken https://scipython.com/
 - [ortografisk projektion](https://scipython.com/)
 - [GL reference](https://docs.gl/)
+- installed [ScreenToGif](https://www.screentogif.com/)
 - 
